@@ -3,7 +3,6 @@
   src: url("../font/AvantGarde-CondDemi.woff2") format("woff2"), url("../font/AvantGarde-CondDemi.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 *, ::before, ::after {
   box-sizing: border-box;
@@ -67,6 +66,10 @@ img {
   background-image: url("../img/background.png");
   background-size: cover;
   background-position: center;
+}
+
+.watermark {
+  cursor: pointer;
 }
 
 .input {
