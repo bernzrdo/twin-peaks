@@ -1,0 +1,86 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+:root {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+  color-scheme: dark;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: "ITC Avant Garde Gothic", system-ui, sans-serif;
+  height: 100%;
+  margin: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+a {
+  color: inherit;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 1em;
+  color: inherit;
+  line-height: 1.15;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+canvas {
+  aspect-ratio: 4/3;
+  max-width: 700px;
+  width: calc(100% - 50px);
+  border-radius: 1rem;
+}
+
+.input {
+  display: flex;
+  width: calc(100% - 50px);
+  max-width: 300px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5000px;
+}
+.input input {
+  flex-grow: 1;
+  min-width: 0;
+  padding-left: 1rem;
+  border-radius: 5000px;
+  text-transform: uppercase;
+}
+.input input:focus {
+  outline: none;
+}
+.input button {
+  background-color: #000;
+  color: #fff;
+  margin: 0.25rem;
+  border-radius: 5000px;
+  padding: 0.5rem 1rem;
+}
+
+.credits {
+  color: rgba(255, 255, 255, 0.5333333333);
+}
