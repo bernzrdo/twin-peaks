@@ -25,7 +25,7 @@ function getFiles(dir){
 mix.disableSuccessNotifications();
 
 for(let scss of getFiles(`${SRC}/scss`))
-    mix.sass(scss, scss.replace(`${SRC}/scss/`, `${DEST}/css/`).replace('.scss', '.css'));
+    mix.sass(scss, scss.replace(`${SRC}/scss/`, `${DEST}/css/`).replace('.scss', '.css')).options({ processCssUrls: false });
 
 for(let ts of getFiles(`${SRC}/ts`))
     mix.ts(ts, ts.replace(`${SRC}/ts/`, `${DEST}/js/`).replace('.ts', '.js'));

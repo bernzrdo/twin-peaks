@@ -39,19 +39,22 @@ var $input = document.querySelector('.input input');
 $input.addEventListener('input', render);
 var $btn = document.querySelector('.input button');
 $btn.addEventListener('click', save);
-var img = new Image();
-img.addEventListener('load', render);
-img.addEventListener('error', function (e) {
+var $img = new Image();
+$canvas.after($img);
+var bgImg = new Image();
+bgImg.addEventListener('load', render);
+bgImg.addEventListener('error', function (e) {
   console.error('No background image!', e);
   alert('An error occurred :( Sorry...');
 });
-img.src = 'img/background.png';
+bgImg.src = 'img/background.png';
 function getText() {
   return ($input.value || 'Twin Peaks').toUpperCase().trim();
 }
+var imgUrl = '';
 function render() {
   ctx.clearRect(0, 0, $canvas.width, $canvas.height);
-  ctx.drawImage(img, 0, 0, $canvas.width, $canvas.height);
+  ctx.drawImage(bgImg, 0, 0, $canvas.width, $canvas.height);
   var text = getText();
   // fill
   ctx.shadowColor = '#000';
@@ -59,24 +62,28 @@ function render() {
   // stroke
   ctx.shadowColor = 'transparent';
   ctx.strokeText(text, $canvas.width / 2, $canvas.height / 2, $canvas.width - 100);
-}
-function save() {
+  // finish
+  if (text != getText()) return;
   $canvas.toBlob(function (blob) {
+    if (text != getText()) return;
     if (!blob) {
       console.error('No blob!');
       alert('An error occurred :( Sorry...');
       return;
     }
-    var url = URL.createObjectURL(blob);
-    var $a = document.createElement('a');
-    $a.style.display = 'none';
-    $a.href = url;
-    $a.download = getText().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ +/g, '-').replace(/[^A-Z0-9-]/g, '') + '.jpg';
-    document.body.appendChild($a);
-    $a.click();
-    $a.remove();
-    URL.revokeObjectURL(url);
-  }, 'image/jpg', .95);
+    if (imgUrl) URL.revokeObjectURL(imgUrl);
+    imgUrl = URL.createObjectURL(blob);
+    $img.src = imgUrl;
+  });
+}
+function save() {
+  var $a = document.createElement('a');
+  $a.style.display = 'none';
+  $a.href = imgUrl;
+  $a.download = getText().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ +/g, '-').replace(/[^A-Z0-9-]/g, '');
+  document.body.appendChild($a);
+  $a.click();
+  $a.remove();
 }
 
 /***/ })

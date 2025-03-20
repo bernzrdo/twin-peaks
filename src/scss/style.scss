@@ -1,4 +1,12 @@
 
+@font-face {
+    font-family: 'ITC Avant Garde Gothic';
+    src: url('../font/AvantGarde-CondDemi.woff2') format('woff2'), url('../font/AvantGarde-CondDemi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 *, ::before, ::after { box-sizing: border-box }
 
 :root {
@@ -43,11 +51,16 @@ button { cursor: pointer }
 
 h1, h2, h3, h4, h5, h6, p { margin: 0 }
 
-canvas {
+canvas { display: none }
+
+img {
     aspect-ratio: 4 / 3;
     max-width: 700px;
     width: calc(100% - 50px);
     border-radius: 1rem;
+    background-image: url('../img/background.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .input {
