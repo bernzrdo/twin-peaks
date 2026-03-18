@@ -23,7 +23,6 @@
         <meta property="twitter:description" content="Easily create a Twin Peak Intro Title meme!" />
         <meta property="twitter:image" content="https://bernzrdo.wtf/twin-peaks/img/background.png" />
 
-        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
         <noscript>This website requires JavaScript! Please enable it.</noscript>
@@ -32,13 +31,19 @@
             <input type="text" placeholder="Twin Peaks" autofocus>
             <button>Save</button>
         </div>
-        <label class="watermark" for="watermark">
-            <input type="checkbox" id="watermark" checked>
-            Watermark
-        </label>
+        <div class="options">
+            <label class="watermark" for="watermark">
+                <input type="checkbox" id="watermark" checked>
+                Watermark
+            </label>
+            <label class="transparent" for="transparent">
+                <input type="checkbox" id="transparent">
+                Transparent
+            </label>
+        </div>
         <div class="credits">
             Made by <a href="https://bernzrdo.wtf/" target="_blank">bernzrdo</a> · <a href="https://tally.so/r/nW14rR" target="_blank">Feedback</a>
         </div>
-        <script src="js/script.js"></script>
+        <script type="module" src="/src/main.ts"></script>
     </body>
 </html>
