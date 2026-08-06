@@ -12,7 +12,7 @@ ctx.shadowBlur = 5
 ctx.shadowOffsetX = 10
 ctx.shadowOffsetY = 10
 
-const $input: HTMLInputElement = document.querySelector('.input input')!
+const $input: HTMLInputElement = document.querySelector('.input textarea')!
 $input.addEventListener('input', render)
 
 const $btn: HTMLButtonElement = document.querySelector('.input button')!
@@ -38,10 +38,16 @@ bgImg.src = bgImgUrl
 document.fonts.ready.then(render)
 
 function getText(){
-    return ($input.value || 'Twin Peaks').toUpperCase().trim()
+    return ($input.value || 'TWIN PEAKS').split('\n').map(l=>l.trim())
+}
+
+function textChanged(text: string[]){
+    return text.join() != getText().join()
 }
 
 let imgUrl = ''
+
+const LINE_HEIGHT = 170
 
 function render(){
     if(!$transparent.checked && !bgImg.complete) return
@@ -62,11 +68,14 @@ function render(){
     ctx.textBaseline = 'middle' 
     ctx.textAlign = 'center'
     ctx.fillStyle = '#552F26'
-    ctx.fillText(text, $canvas.width / 2, $canvas.height / 2, $canvas.width - 100)
+    let startY = ($canvas.height - ((text.length - 1) * LINE_HEIGHT)) / 2
+    for(let [i, line] of text.entries())
+        ctx.fillText(line, $canvas.width / 2, startY + i * LINE_HEIGHT, $canvas.width - 100)
 
     // stroke
     ctx.shadowColor = 'transparent'
-    ctx.strokeText(text, $canvas.width / 2, $canvas.height / 2, $canvas.width - 100)
+    for(let [i, line] of text.entries())
+        ctx.strokeText(line, $canvas.width / 2, startY + i * LINE_HEIGHT, $canvas.width - 100)
 
     // watermark
     if($watermark.checked){
@@ -78,9 +87,9 @@ function render(){
     }
 
     // finish
-    if(text != getText()) return
+    if(textChanged(text)) return
     $canvas.toBlob(blob=>{
-        if(text != getText()) return
+        if(textChanged(text)) return
 
         if(!blob){
             console.error('No blob!')

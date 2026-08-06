@@ -74,20 +74,21 @@ img {
 .input {
 
     display: flex;
+    align-items: flex-end;
 
     width: calc(100% - 50px);
     max-width: 300px;
 
     background-color: #fff;
     color: #000;
-    border-radius: 5000px;
+    border-radius: 1.25rem;
 
-    input {
+    textarea {
         flex-grow: 1;
         min-width: 0;
-        padding-left: 1rem;
-        border-radius: 5000px;
-        text-transform: uppercase;
+        padding: .75rem;
+        resize: none;
+        field-sizing: content;
         &:focus { outline: none }
     }
 
@@ -95,7 +96,7 @@ img {
         background-color: #000;
         color: #fff;
         margin: .25rem;
-        border-radius: 5000px;
+        border-radius: 1.5rem;
         padding: .5rem 1rem;
     }
 
